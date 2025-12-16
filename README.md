@@ -35,10 +35,11 @@ The objective of this project is to:
 Linkedin_Automation/
 │
 ├── main.go              # Entry point – controls overall automation flow
-├── utils/  
-│   └── browser.go       # Browser setup and human-like delay utilities
-|   └── delay.go         # to delay like humanised
-|   └── credentials.go   # contain username and password for linkedin
+├── utils/
+│   ├── browser.go       # Browser setup and human-like delay utilities
+│   ├── delay.go         # Human-like delay implementation
+│   └── credentials.go  # LinkedIn username and password
+│
 ├── go.mod               # Go module definition
 ├── go.sum               # Dependency lock file
 └── README.md            # Project documentation
@@ -71,34 +72,86 @@ To reduce bot-like patterns, the automation includes:
 
 ## How to Run the Project
 
-### Install Go
+### Step 1: Install Go (If Not Installed)
 
-Ensure Go is installed:
+#### Check if Go is installed
 
 ```bash
 go version
 ```
 
-### Clone the Repository
+If Go is **not installed**, follow the steps below (Ubuntu/Linux).
+
+#### 🐧 Install Go on Ubuntu / Linux
+
+```bash
+sudo apt update
+sudo apt install golang-go -y
+```
+
+####Verify Installation
+
+```bash
+go version
+```
+
+Example output:
+
+```
+go version go1.18.1 linux/amd64
+```
+
+---
+
+### Step 2: Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/Linkedin_Automation.git
 cd Linkedin_Automation
 ```
 
-### Initialize & Download Dependencies
+---
+
+### Step 3: Initialize Go Module (Only First Time)
+
+> If `go.mod` already exists, **skip this step**.
+
+```bash
+go mod init Linkedin_Automation
+```
+
+---
+
+### Step 4: Download Dependencies
 
 ```bash
 go mod tidy
 ```
 
-### Run the Automation
+This will download:
+
+* Rod
+* Chromium launcher dependencies
+
+---
+
+### Step 5: Run the Project
 
 ```bash
 go run main.go
 ```
 
->  On first run, Rod will download a compatible Chromium browser automatically.
+### What happens when you run it:
+
+* Chromium browser is launched **visibly**
+* LinkedIn login page opens
+* Credentials are entered automatically
+* Feed loads successfully
+* Search page opens
+* Page scrolls like a human
+* Browser closes gracefully
+
+> On first run, Rod will download a compatible Chromium browser automatically.
 
 ---
 
@@ -120,4 +173,3 @@ Users are responsible for complying with LinkedIn’s terms of service.
 Final Year B.Tech – Artificial Intelligence & Data Science
 
 ---
-
